@@ -1,16 +1,18 @@
 <template>
   <div class="bg">
-    <div class="float-left">
-    <img src="../assets/Triforce.png">
-
+    <div class="clearfix">
+      <b-img left src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="left image" />
     </div>
     <div class="hero">
       <h1 class="display-3">Hylian Translator</h1></br>
       <p class="lead">A language between worlds</p></br>
     </div>
-    <div class="float-center">
+    <div class="text">
+      <h3>From:</h3>
       <b-form-select v-model="selected" :options="options" class="mb-3" />
+      <h3>To:</h3>
       <b-form-select v-model="selected1" :options="options1" class="mb-3" />
+
       <div>
   <b-card title="Test"
           class="test">
@@ -24,12 +26,23 @@
         <b-form-textarea v-model = "phrase" class = "text" placeholder="Enter phrase to be translated..." rows="10"></b-form-textarea>
       </b-form-group>
     </div>
+    </br>
+
+    <div class="text">
+      <b-form-group label="Translator">
+        <b-form-textarea v-model="text" rows="6"></b-form-textarea>
+      </b-form-group>
+      <b-button v-on:click="greet" :size="lg" :variant="primary">
+             Click Me!
+      </b-button>
+  </div>
   </div>
 </template>
 <script>
 export default {
   data () {
     return {
+      text: '',
       selected: null,
       selected1: null,
       options: [
@@ -53,6 +66,12 @@ export default {
         if (this.options.value=== '')
       }
     }
+  },
+  methods: {
+    greet: function (event) {
+      // `this` inside methods points to the Vue instance
+      alert('You just took orders from a button!!!')
+    }
   }
 }
 </script>
@@ -60,7 +79,7 @@ export default {
 <style>
 @import '../../static/style.css';
   .hero {
-
+    color: white;
     align-items: center;
     justify-content: center;
     text-align: center;
@@ -70,14 +89,14 @@ export default {
     font-size: 1.5rem;
   },
   .logo{
-    align-items: left;
-    float: left;
+    width: 10px;
+    height: 10px;
   }
   .bg {
       /* The image used */
-      background-image: url("../assets/forest3.jpg");
+      background-image: url("../assets/majorasMask3.jpg");
       /* Full height */
-      height: 100vh;
+      height: 100%;
 
       /* Center and scale the image nicely */
       background-position: center;
@@ -85,7 +104,10 @@ export default {
       background-size: cover;
   }
   .text{
-    width: 600px;
+    margin-left: 300px;
+    margin-right: 300px;
+    align-items: row;
+    color: white;
   }
 
   .twilight-text{
