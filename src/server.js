@@ -34,9 +34,18 @@ app.use((req, res, next) => {
 })
 
 // For ease of this tutorial, we are going to use SQLite to limit dependencies
-let database = new Sequelize({
-  dialect: 'sqlite',
-  storage: './test.sqlite'
+let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
+  host: 'localhost',
+  dialect: 'postgres',
+  operatorsAliases: false,
+
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+
 })
 
 // Define our Post model
