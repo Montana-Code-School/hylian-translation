@@ -1,27 +1,27 @@
 <template>
-  <div class="bg">
-    <div class="clearfix">
-      <b-img left src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="left image" />
-    </div>
+  <div>
+    <b-card class = "card">
     <div class="hero">
+      <b-img src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="Triforce" />
       <h1 class="display-3">Hylian Translator</h1></br>
-      <p class="lead">A language between worlds</p></br>
     </div>
-    <div class="text">
-      <h3>From:</h3>
-      <b-form-select v-model="selected" :options="options" class="mb-3" />
-      <h3>To:</h3>
-      <b-form-select v-model="selected1" :options="options1" class="mb-3" />
-    </div>
-    </br>
-    <div class="text">
-      <b-form-group label="Translator">
-        <b-form-textarea v-model="text" rows="6"></b-form-textarea>
-      </b-form-group>
-      <b-button v-on:click="greet" :size="lg" :variant="primary">
-             Click Me!
-      </b-button>
-  </div>
+    <p class="subtext">A language between worlds</p>
+        <div class="languageSelect">
+          <h3>From:</h3>
+          <b-form-select v-model="selected" :options="options" class="select" />
+          <h3>To:</h3>
+          <b-form-select v-model="selected1" :options="options1" class="select" />
+        </div>
+        </br>
+        <div class="text">
+          <b-form-group label="Translator">
+            <b-form-textarea placeholder = "Enter phrase to be translated..." v-model="body" rows="6"></b-form-textarea>
+          </b-form-group>
+          <button id = "buttonCustom" v-on:click="greet" >
+                 Click Me!</button>
+         </div>
+
+       </b-card >
   </div>
 </template>
 <script>
@@ -60,37 +60,53 @@ export default {
 <style>
 @import '../../static/style.css';
   .hero {
+    display:flex;
     color: white;
-    align-items: center;
     justify-content: center;
     text-align: center;
-  },
-  .hero .lead {
+    flex-direction: row;
+    margin-top: 125px;
+    margin-bottom:75px
+  }
+  .subtext {
     font-weight: 250;
     font-size: 1.5rem;
-  },
+    display:flex;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    margin-top:-100px;
+    margin-left: 20px;
+  }
+  .hero .display-3 {
+    padding-top: 50px;
+    padding-left: 20px
+  }
   .logo{
     width: 10px;
     height: 10px;
   }
-  .bg {
+  html, body {
       /* The image used */
-      background-image: url("../assets/majorasMask3.jpg");
-      /* Full height */
-      height: 100%;
-
-      /* Center and scale the image nicely */
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-  }
-  .text{
+      background-image: url("../assets/twilight1.jpg");
+          /* Set rules to fill background */
+     background-size: cover;
+     height: 100%;
+     overflow: hidden;
+    }
+  .languageSelect{
+    display: flex;
     margin-left: 300px;
     margin-right: 300px;
     align-items: row;
     color: white;
   }
+  .text{
+    margin-left: 300px;
+    margin-right: 300px;
+    color: white;
 
+  }
   .twilight-text{
     font-family: Twilight;
     font-size: 30px;
@@ -104,5 +120,20 @@ export default {
   .sheikah-text{
     font-family: Ancient;
     font-size: 30px;
+  }
+
+  .select{
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+
+  #buttonCustom{
+    display: flex;
+     align-items: center;
+     justify-content: center;
+  }
+
+  .card {
+    background-color: black;
   }
 </style>
