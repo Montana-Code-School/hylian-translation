@@ -1,0 +1,20 @@
+@font-face {
+  font-family: Sheikah;
+  src: url("../src/assets/fonts/sheikah.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Twilight;
+  src: url("../src/assets/fonts/tp.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Ancient;
+  src: url("../src/assets/fonts/ancient.otf");
+  font-weight: normal;
+  font-style: normal;
+}
