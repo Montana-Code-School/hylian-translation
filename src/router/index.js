@@ -27,7 +27,7 @@ let router = new Router({
     },
     {
       path: '/posts-manager',
-      name: 'PostsManager',
+      name: 'Favorites',
       component: PostsManager,
       meta: {
         requiresAuth: true
