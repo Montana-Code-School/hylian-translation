@@ -1,4 +1,4 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 import axios from 'axios'
 
 const client = axios.create({
@@ -8,15 +8,13 @@ const client = axios.create({
 
 export default {
   async execute (method, resource, data) {
+    console.log(data)
+    console.log('inside execute')
     // inject the accessToken for each request
-    let accessToken = await Vue.prototype.$auth.getAccessToken()
     return client({
       method,
       url: resource,
-      data,
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
+      data
     }).then(req => {
       return req.data
     })
@@ -35,5 +33,8 @@ export default {
   },
   deleteFavorite (id) {
     return this.execute('delete', `/favorites/${id}`)
+  },
+  createUser (data) {
+    return this.execute('post', `/users`, data)
   }
 }

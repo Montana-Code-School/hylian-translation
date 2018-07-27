@@ -70,7 +70,7 @@ export default {
   }
   .bg {
       /* The image used */
-      background-image: url("../assets/majorasMask3.jpg");
+      background-image: url("../assets/ocarina1.jpg");
       /* Full height */
       height: 100%;
 

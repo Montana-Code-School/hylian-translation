@@ -7,8 +7,7 @@
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item to="/posts-manager">Posts Manager</b-nav-item>
-          <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
-          <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+          <b-nav-item to="/example-component">Example Component</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -27,24 +26,10 @@ export default {
     }
   },
   async created () {
-    await this.refreshActiveUser()
   },
   watch: {
-    // everytime a route is changed refresh the activeUser
-    '$route': 'refreshActiveUser'
   },
   methods: {
-    login () {
-      this.$auth.loginRedirect()
-    },
-    async refreshActiveUser () {
-      this.activeUser = await this.$auth.getUser()
-    },
-    async logout () {
-      await this.$auth.logout()
-      await this.refreshActiveUser()
-      this.$router.push('/')
-    }
   }
 }
 </script>
