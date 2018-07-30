@@ -3,35 +3,13 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 const epilogue = require('epilogue')
-const OktaJwtVerifier = require('@okta/jwt-verifier')
-
-const oktaJwtVerifier = new OktaJwtVerifier({
-  clientId: '0oafsbvsnkRjsipKb0h7',
-  issuer: 'https://dev-465261.oktapreview.com/oauth2/default'
-})
+const bcrypt = require('bcrypt')
 
 let app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-// verify JWT token middleware
-app.use((req, res, next) => {
-  // require every request to have an authorization header
-  if (!req.headers.authorization) {
-    return next(new Error('Authorization header is required'))
-  }
-  let parts = req.headers.authorization.trim().split(' ')
-  let accessToken = parts.pop()
-  oktaJwtVerifier.verifyAccessToken(accessToken)
-    .then(jwt => {
-      req.user = {
-        uid: jwt.claims.uid,
-        email: jwt.claims.sub
-      }
-      next()
-    })
-    .catch(next) // jwt did not verify!
-})
+
 
 let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
   host: 'localhost',
@@ -47,11 +25,31 @@ let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
 
 })
 
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+
+})
 // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
 let Favorite = database.define('favorites', {
   body: Sequelize.TEXT
 })
+
+let User = database.define('users', {
+  name: Sequelize.STRING,
+  password: Sequelize.STRING
+})
+// User.beforeCreate(() => {
+//   return bcrypt.hash(user.password, 10).then( hash => {
+//     user.password = hash
+//   }).catch(err => {
+//     throw new Error()
+//   })
+// })
 
 // Initialize epilogue
 epilogue.initialize({
@@ -60,10 +58,19 @@ epilogue.initialize({
 })
 
 // Create the dynamic REST resource for our Post model
-let userResource = epilogue.resource({
+let favoriteResource = epilogue.resource({
   model: Favorite,
   endpoints: ['/favorites', '/favorites/:id']
 })
+let userResource = epilogue.resource({
+  model: User,
+  endpoints: ['/users', '/users/:id']
+})
+
+// userResource.create.before((req, res, context) => {
+//   console.log("hello");
+// })
+
 
 // Resets the database and launches the express app on :8081
 database
