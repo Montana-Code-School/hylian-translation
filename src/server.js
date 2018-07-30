@@ -11,11 +11,19 @@ app.use(bodyParser.json())
 
 
 
-// For ease of this tutorial, we are going to use SQLite to limit dependencies
-let database = new Sequelize('postgres', 'tylerhofer', 'Naticu04179488', {
+let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
+
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  },
+
+})
 
   pool: {
     max: 5,

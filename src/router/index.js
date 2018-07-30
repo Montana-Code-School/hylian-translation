@@ -25,17 +25,10 @@ let router = new Router({
     },
     {
       path: '/posts-manager',
-      name: 'PostsManager',
-      component: PostsManager
-    },
-    {
-      path: '/examplecomponent',
-      name: 'ExampleComponent',
-      component: ExampleComponent,
-      access: {
-        requiresLogin: true,
-        requirePermissions: ['admin'],
-        permissionType: 'AtLeastOne'
+      name: 'Favorites',
+      component: PostsManager,
+      meta: {
+        requiresAuth: true
       }
     }
 
