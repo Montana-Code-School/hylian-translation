@@ -4,6 +4,8 @@
 const path = require('path')
 
 module.exports = {
+  db_user: 'claireobrien',
+  db_pass:  'Flyolo15!',
   build: {
     env: require('./prod.env'),
     index: path.resolve(__dirname, '../dist/index.html'),
