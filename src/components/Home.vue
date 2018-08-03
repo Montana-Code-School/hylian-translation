@@ -15,7 +15,7 @@
         </br>
         <div class="text">
           <b-form-group label="Translator">
-            <b-form-textarea placeholder = "Enter phrase to be translated..." v-model="body" rows="6"></b-form-textarea>
+            <b-form-textarea placeholder = "Enter phrase to be translated..." v-model="phrase" rows="6"></b-form-textarea>
           </b-form-group>
           <button id = "buttonCustom" v-on:click="greet" >
                  Click Me!</button>

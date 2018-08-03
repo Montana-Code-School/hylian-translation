@@ -7,11 +7,8 @@ const client = axios.create({
 })
 
 export default {
-  async execute (method, resource, data) {
-    console.log(data)
-    console.log('inside execute')
-    // inject the accessToken for each request
-    return client({
+ async execute (method, resource, data) {
+   return client({
       method,
       url: resource,
       data
@@ -36,5 +33,9 @@ export default {
   },
   createUser (data) {
     return this.execute('post', `/users`, data)
-  }
+  },
+  updateUser (id, data) {
+    return this.execute('put', `/users/${id}`, data)
+  },
+  
 }

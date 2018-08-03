@@ -9,8 +9,6 @@ let app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-
-
 let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
   host: 'localhost',
   dialect: 'postgres',
@@ -21,17 +19,7 @@ let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
     min: 0,
     acquire: 30000,
     idle: 10000
-  },
-
-})
-
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-
+  }
 })
 // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
@@ -41,15 +29,13 @@ let Favorite = database.define('favorites', {
 
 let User = database.define('users', {
   name: Sequelize.STRING,
-  password: Sequelize.STRING
+  email: Sequelize.STRING,
+  password: Sequelize.STRING,
+  favoriteZelda: Sequelize.STRING
 })
-// User.beforeCreate(() => {
-//   return bcrypt.hash(user.password, 10).then( hash => {
-//     user.password = hash
-//   }).catch(err => {
-//     throw new Error()
-//   })
-// })
+
+User.belongsToMany(Favorite, { as: 'favorites', through: 'UserFavorites', foreignKey: 'userId' })
+Favorite.belongsToMany(User, { as: 'userID', through: 'userFavorites', foreignKey: 'favoriteId' })
 
 // Initialize epilogue
 epilogue.initialize({
@@ -67,11 +53,6 @@ let userResource = epilogue.resource({
   endpoints: ['/users', '/users/:id']
 })
 
-// userResource.create.before((req, res, context) => {
-//   console.log("hello");
-// })
-
-
 // Resets the database and launches the express app on :8081
 database
   .sync({ force: true })
@@ -79,4 +60,4 @@ database
     app.listen(8081, () => {
       console.log('listening to port localhost:8081')
     })
-  })
+})

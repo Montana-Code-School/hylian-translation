@@ -1,40 +1,55 @@
-
 <template>
-<div>
-    <form @submit.prevent="authenticate()">
-        <label for="">Name:</label>
-        <input v-model="auth.name" type="text">
-
-        <label for="">Password</label>
-        <input v-model="auth.password" type="password">
-
-        <button type="submit">Login</button>
+  <div>
+    <h2>Login</h2>
+    <p v-if="$route.query.redirect">
+      You need to login first.
+    </p>
+    <form @submit.prevent="login" autocomplete="off">
+      <label><input v-model="user.name" placeholder="Name"></label>
+      <label><input v-model="user.email" placeholder="Email"></label>
+      <label><input v-model="user.pass" placeholder="Password" type="password"></label>
+      <label><input v-model="user.favoriteZelda" placeholder="What's your favorite Zelda Game?"></label><br>
+      <button type="submit">login</button>
+      <p v-if="error" class="error">Bad login information</p>
     </form>
-</div>
+  </div>
 </template>
 
 <script>
-import api from '@/api'
-export default {
-  data () {
-    return {
-      auth: { name: 'meow', password: 'yes' },
-      user: {}
-    }
-  },
-  methods: {
-    /**
-     * Attempts to authenticate the user
-     *
-     * @return {mixed}
-     */
-    async authenticate () {
-      let credentials = this.auth
-      await api.createUser(credentials)
-      // window.localStorage.setItem('token', response.data.token)
-      // window.localStorage.setItem('auth-user', JSON.stringify(response.data.user))
-      // this.$route.router.go({name: 'example-component'})
+  import auth from '../auth'
+  import api from '../api'
+  export default {
+    data () {
+      return {
+        error: false,
+        user: {
+          email: 'claireobie15@gmail.com',
+          pass: 'Flyolo15!'
+        },
+
+      }
+    },
+    methods: {
+       login () {
+        auth.login(this.user.email, this.user.pass, loggedIn => {
+          if (!loggedIn) {
+            this.error = true
+          } else {
+            if (this.user.id) {
+               api.updateUser(this.user.id, this.user)
+            } else {
+               api.createUser(this.user)
+            }
+            this.$router.replace(this.$route.query.redirect || '/')
+          }
+        })
+      },
     }
   }
-}
 </script>
+
+<style>
+  .error {
+    color: red;
+  }
+</style>
