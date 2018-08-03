@@ -11,22 +11,25 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')))
 
+// let database = new Sequelize({
+//   // database: 'postgres',
+//   // username: 'claireobrien',
+//   // password: null,
+//   // host: 'localhost',
+//   // dialect: 'postgres',
+//   // operatorsAliases: false,
+//   //
+//   // pool: {
+//   //   max: 5,
+//   //   min: 0,
+//   //   acquire: 30000,
+//   //   idle: 10000
+//   // }
+// })
 let database = new Sequelize({
-  database: 'postgres',
-  username: 'claireobrien',
-  password: null,
-  host: 'localhost',
-  dialect: 'postgres',
-  operatorsAliases: false,
-
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
+  process.env.DATABASE_URL
 })
-// Define our Post model
+// // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
 let Favorite = database.define('favorites', {
   uuid: {
