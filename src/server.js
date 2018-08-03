@@ -4,14 +4,16 @@ const bodyParser = require('body-parser')
 const Sequelize = require('sequelize')
 const epilogue = require('epilogue')
 const bcrypt = require('bcrypt')
+const path = require('path')
 
 let app = express()
 app.use(cors())
 app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, 'dist')))
 
 let database = new Sequelize({
-  database: 'hylian',
-  username: 'edwardweymouth',
+  database: 'postgres',
+  username: 'claireobrien',
   password: null,
   host: 'localhost',
   dialect: 'postgres',
@@ -93,7 +95,7 @@ app.use('/makeOne', (req, res) => {
 })
 
 app.use('/getall', (req, res) => {
-  User.findAll({ include: [ Favorite ] }).then(users => res.json(users))
+  User.findAll({include: [ Favorite ] }).then(users => res.json(users))
 })
 
 // Resets the database and launches the express app on :8081

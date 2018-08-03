@@ -10,7 +10,8 @@
     "build": "node build/build.js",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
     "test": "npm run unit",
-    "lint": "eslint --ext .js,.vue src test/unit/specs"
+    "lint": "eslint --ext .js,.vue src test/unit/specs",
+    "start": "node ./src/server.js"
   },
   "dependencies": {
     "@okta/jwt-verifier": "0.0.11",
@@ -28,6 +29,7 @@
     "epilogue": "^0.7.1",
     "express-session": "^1.15.6",
     "jsonwebtoken": "^8.3.0",
+    "path": "^0.12.7",
     "pg": "^7.4.3",
     "pg-hstore": "^2.3.2",
     "sequelize": "^4.37.6",
