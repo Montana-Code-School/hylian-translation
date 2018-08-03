@@ -9,7 +9,10 @@ let app = express()
 app.use(cors())
 app.use(bodyParser.json())
 
-let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
+let database = new Sequelize({
+  database: 'hylian',
+  username: 'edwardweymouth',
+  password: null,
   host: 'localhost',
   dialect: 'postgres',
   operatorsAliases: false,
@@ -24,18 +27,35 @@ let database = new Sequelize('postgres', 'claireobrien', 'Flyolo15!', {
 // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
 let Favorite = database.define('favorites', {
-  body: Sequelize.TEXT
+  uuid: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true
+  },
+  body:{
+    type: Sequelize.TEXT
+  }
 })
 
 let User = database.define('users', {
-  name: Sequelize.STRING,
-  email: Sequelize.STRING,
-  password: Sequelize.STRING,
-  favoriteZelda: Sequelize.STRING
+  uuid: {
+    type: Sequelize.UUID,
+    defaultValue: Sequelize.UUIDV1,
+    primaryKey: true
+  },
+  name: {
+    type: Sequelize.STRING
+  },
+  email: {
+    type: Sequelize.STRING
+  },
+  favoriteZelda: {
+    type: Sequelize.STRING
+  }
 })
 
-User.belongsToMany(Favorite, { as: 'favorites', through: 'UserFavorites', foreignKey: 'userId' })
-Favorite.belongsToMany(User, { as: 'userID', through: 'userFavorites', foreignKey: 'favoriteId' })
+User.hasMany(Favorite, {foreignKey: 'fk_userid', sourceKey: 'uuid'});
+Favorite.belongsTo(User, {foreignKey: 'fk_userid', targetKey: 'uuid'});
 
 // Initialize epilogue
 epilogue.initialize({
@@ -48,9 +68,32 @@ let favoriteResource = epilogue.resource({
   model: Favorite,
   endpoints: ['/favorites', '/favorites/:id']
 })
+
 let userResource = epilogue.resource({
   model: User,
   endpoints: ['/users', '/users/:id']
+})
+
+app.use('/makeOne', (req, res) => {
+  User.create({
+    name: 'Meow',
+    email: 'meow',
+    favoriteZelda: 'meowZelda',
+    favorites: [
+      {
+        body :"meow"
+      },
+      {
+        body :"meow"
+      }
+    ]
+  }, {
+    include: [ Favorite ]
+  }).then(data => res.json(data))
+})
+
+app.use('/getall', (req, res) => {
+  User.findAll({ include: [ Favorite ] }).then(users => res.json(users))
 })
 
 // Resets the database and launches the express app on :8081
