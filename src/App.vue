@@ -6,9 +6,10 @@
       <b-collapse is-nav id="nav_collapse">
         <b-navbar-nav>
           <b-nav-item to="/">Home</b-nav-item>
-          <b-nav-item to="/posts-manager">Favorites</b-nav-item>
-          <b-nav-item href="#" @click.prevent="login" v-if="!activeUser">Login</b-nav-item>
-          <b-nav-item href="#" @click.prevent="logout" v-else>Logout</b-nav-item>
+          <b-nav-item v-if="loggedIn" to="/posts-manager">Favorites</b-nav-item>
+          <b-nav-item v-if="loggedIn" to="/profile">Profile</b-nav-item>
+          <b-nav-item v-if="!loggedIn" to="/login" >Login</b-nav-item>
+          <b-nav-item v-if="loggedIn"  to="/logout">Logout</b-nav-item>
         </b-navbar-nav>
       </b-collapse>
     </b-navbar>
@@ -18,19 +19,17 @@
 </template>
 
 <script>
-
-export default {
-  name: 'app',
-  data () {
-    return {
-      activeUser: null
+  import auth from './auth'
+  export default {
+    data () {
+      return {
+        loggedIn: auth.loggedIn()
+      }
+    },
+    created () {
+      auth.onChange = loggedIn => {
+        this.loggedIn = loggedIn
+      }
     }
-  },
-  async created () {
-  },
-  watch: {
-  },
-  methods: {
   }
-}
 </script>

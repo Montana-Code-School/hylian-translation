@@ -65,6 +65,7 @@ export default {
       this.model = Object.assign({}, favorite)
     },
     async saveFavorite () {
+      console.log("model", this.model);
       if (this.model.id) {
         await api.updateFavorite(this.model.id, this.model)
       } else {

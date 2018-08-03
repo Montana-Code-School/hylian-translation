@@ -1,12 +1,11 @@
 <template>
-  <div class = "classDiv">
+  <div>
     <b-card class = "card">
     <div class="hero">
       <b-img src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="Triforce" />
-      <h1 class="display-3">A Language </h1></br>
-      <h1 class="display-3">Between Worlds</h1></br>
+      <h1 class="display-3">Hylian Translator</h1></br>
     </div>
-    <p class="subtext">Hylian Translator</p>
+    <p class="subtext">A language between worlds</p>
         <div class="languageSelect">
           <h3>From:</h3>
           <b-form-select v-model="selected" :options="options" class="select" />
@@ -16,16 +15,13 @@
         </br>
         <div class="text">
           <b-form-group label="Translator">
-            <b-form-textarea placeholder = "Enter phrase to be translated..."
-              v-model="body" rows="6"></b-form-textarea>
+            <b-form-textarea placeholder = "Enter phrase to be translated..." v-model="phrase" rows="6"></b-form-textarea>
           </b-form-group>
-          <b-button
-                v-on:click="translate" id = "buttonCustom" >
-                 Translate
-          </b-button>
-       </div>
-       <div class="text" v-if="this.translating" :class = "textClass()">{{body}}</div>
-    </b-card >
+          <button id = "buttonCustom" v-on:click="greet" >
+                 Click Me!</button>
+         </div>
+
+       </b-card >
   </div>
 </template>
 <script>
@@ -40,39 +36,22 @@ export default {
         { value: 'English', text: 'English' },
         { value: 'Skyward Sword Ancient Hylian', text: 'Skyward Sword Ancient Hylian' },
         { value: 'Twilight Princess Hylian', text: 'Twilight Princess Hylian' },
-        { value: 'BotW Sheikah', text: 'BotW Sheikah' }
+        { value: 'BotW Shiekah', text: 'BotW Shiekah' }
       ],
       options1: [
         { value: null, text: 'Please select an option' },
         { value: 'English', text: 'English' },
         { value: 'Skyward Sword Ancient Hylian', text: 'Skyward Sword Ancient Hylian' },
         { value: 'Twilight Princess Hylian', text: 'Twilight Princess Hylian' },
-        { value: 'BotW Sheikah', text: 'BotW Sheikah' }
+        { value: 'BotW Shiekah', text: 'BotW Shiekah' }
       ],
-      phrase: '',
-      body: '',
-      translating: false
+      phrase: ''
     }
   },
   methods: {
     greet: function (event) {
       // `this` inside methods points to the Vue instance
-      alert('You have saved this phrase to your favorites.')
-    },
-    textClass () {
-      switch (this.selected1) {
-        case 'Skyward Sword Ancient Hylian':
-          return 'ancient-text'
-        case 'Twilight Princess Hylian':
-          return 'twilight-text'
-        case 'BotW Sheikah':
-          return 'sheikah-text'
-        default:
-          return 'Sans-Serif'
-      }
-    },
-    translate () {
-      this.translating = true
+      alert('You just took orders from a button!!!')
     }
   }
 }
@@ -86,7 +65,8 @@ export default {
     justify-content: center;
     text-align: center;
     flex-direction: row;
-    margin-bottom:75px;
+    margin-top: 125px;
+    margin-bottom:75px
   }
   .subtext {
     font-weight: 250;
@@ -95,7 +75,7 @@ export default {
     color: white;
     justify-content: center;
     text-align: center;
-    margin-top:-101px;
+    margin-top:-100px;
     margin-left: 20px;
   }
   .hero .display-3 {
@@ -116,15 +96,16 @@ export default {
     }
   .languageSelect{
     display: flex;
-    margin-left: 225px;
-    margin-right: 225px;
+    margin-left: 300px;
+    margin-right: 300px;
     align-items: row;
     color: white;
   }
   .text{
-    margin-left: 225px;
-    margin-right: 225px;
+    margin-left: 300px;
+    margin-right: 300px;
     color: white;
+
   }
   .twilight-text{
     font-family: Twilight;
@@ -137,7 +118,7 @@ export default {
   }
 
   .sheikah-text{
-    font-family: Sheikah;
+    font-family: Ancient;
     font-size: 30px;
   }
 
@@ -147,29 +128,12 @@ export default {
   }
 
   #buttonCustom{
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     margin-left: 280px;
-  }
-
-  .card {
-    background-color: black;
-    opacity:0.9;
-    max-width:75rem;
-    border-radius:20px;
-    margin-top:100px;
-  }
-
-  .classDiv {
     display: flex;
      align-items: center;
      justify-content: center;
   }
 
-  .textClass {
-    font-family: Ancient;
-    font-size: 30px
-
+  .card {
+    background-color: black;
   }
 </style>
