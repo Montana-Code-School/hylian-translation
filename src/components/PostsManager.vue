@@ -28,14 +28,6 @@
       </b-col>
       <b-col lg="3">
         <b-card :title="(model.id ? 'Edit Favorite ID#' + model.id : 'New Favorite')">
-          <form @submit.prevent="saveFavorite">
-            <b-form-group label="Body">
-              <b-form-textarea rows="4" v-model="model.body"></b-form-textarea>
-            </b-form-group>
-            <div>
-              <b-btn type="submit" variant="success">Save favorite</b-btn>
-            </div>
-          </form>
         </b-card>
       </b-col>
     </b-row>
@@ -65,7 +57,6 @@ export default {
       this.model = Object.assign({}, favorite)
     },
     async saveFavorite () {
-      console.log("model", this.model);
       if (this.model.id) {
         await api.updateFavorite(this.model.id, this.model)
       } else {

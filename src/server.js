@@ -11,24 +11,25 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')))
 
-// let database = new Sequelize({
-//   // database: 'postgres',
-//   // username: 'claireobrien',
-//   // password: null,
-//   // host: 'localhost',
-//   // dialect: 'postgres',
-//   // operatorsAliases: false,
-//   //
-//   // pool: {
-//   //   max: 5,
-//   //   min: 0,
-//   //   acquire: 30000,
-//   //   idle: 10000
-//   // }
-// })
 let database = new Sequelize({
-  process.env.DATABASE_URL
+  database: 'postgres',
+  username: 'claireobrien',
+  password: null,
+  host: 'localhost',
+  dialect: 'postgres',
+  operatorsAliases: false,
+
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
 })
+
+// let productionDatabase = new Sequelize(process.env.DATABASE_URL)
+//
+// const database = (process.env.NODE_ENV === 'production') ? productionDatabase : devDatabase
 // // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
 let Favorite = database.define('favorites', {
@@ -81,17 +82,9 @@ let userResource = epilogue.resource({
 
 app.use('/makeOne', (req, res) => {
   User.create({
-    name: 'Meow',
-    email: 'meow',
-    favoriteZelda: 'meowZelda',
-    favorites: [
-      {
-        body :"meow"
-      },
-      {
-        body :"meow"
-      }
-    ]
+    name: req.body.name,
+    email: req.body.email,
+    favoriteZelda: req.body.favoriteZelda
   }, {
     include: [ Favorite ]
   }).then(data => res.json(data))
