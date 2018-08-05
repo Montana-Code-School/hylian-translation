@@ -11,23 +11,23 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')))
 
-let database = new Sequelize({
-  database: 'postgres',
-  username: 'claireobrien',
-  password: null,
-  host: 'localhost',
-  dialect: 'postgres',
-  operatorsAliases: false,
+// let database = new Sequelize({
+//   database: 'postgres',
+//   username: 'claireobrien',
+//   password: null,
+//   host: 'localhost',
+//   dialect: 'postgres',
+//   operatorsAliases: false,
+//
+//   pool: {
+//     max: 5,
+//     min: 0,
+//     acquire: 30000,
+//     idle: 10000
+//   }
+// })
 
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  }
-})
-
-// let productionDatabase = new Sequelize(process.env.DATABASE_URL)
+let database = new Sequelize(process.env.DATABASE_URL)
 //
 // const database = (process.env.NODE_ENV === 'production') ? productionDatabase : devDatabase
 // // Define our Post model
