@@ -7,8 +7,6 @@ const client = axios.create({
   json: true
 })
 
-console.log("URL", URL);
-
 export default {
  async execute (method, resource, data) {
    return client({

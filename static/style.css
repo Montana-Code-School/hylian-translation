@@ -90,7 +90,7 @@ html, body {
   margin-left: 10px;
   margin-right: 10px;
 }
-.buttonCustom {
+button.btn.buttonCustom.btn-secondary {
    display: flex;
    align-items: center;
    margin:auto;
