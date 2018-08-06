@@ -86,11 +86,13 @@ html, body {
    justify-content: center;
    margin-left: 280px;
 }
-.card {
+.backgroundCard{
   background-color: black;
   opacity:0.9;
   max-width:75rem;
   border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
 }
 .classDiv {
   display: flex;

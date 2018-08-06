@@ -1,10 +1,9 @@
 <template>
   <div class = "classDiv">
-    <b-card class = "card">
+    <b-card class = "backgroundCard">
     <div class="hero">
       <b-img src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="Triforce" />
-      <h1 class="display-3">A Language </h1></br>
-      <h1 class="display-3">Between Worlds</h1></br>
+      <h1 class="display-3">A Language Between Worlds</h1></br>
     </div>
     <p class="subtext">Hylian Translator</p>
         <div class="languageSelect">
