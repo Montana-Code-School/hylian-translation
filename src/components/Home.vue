@@ -169,7 +169,6 @@ export default {
           /* Set rules to fill background */
      background-size: cover;
      height: 100%;
-     overflow: hidden;
     }
   .languageSelect{
     display: flex;
@@ -215,6 +214,7 @@ export default {
     display: flex;
      align-items: center;
      justify-content: center;
+     overflow: auto;
   }
   .textClass {
     font-family: Ancient;
@@ -225,7 +225,7 @@ export default {
     cursor: move;
     z-index: 21;
     text-align: center;
-    background-color: black;
+    background-color: #000000;
     opacity:0.9;
   }
 
