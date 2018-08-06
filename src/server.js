@@ -8,9 +8,12 @@ const path = require('path')
 const PORT = process.env.PORT || 8081
 
 let app = express()
+app.use(express.static(path.join(__dirname, '/dist')))
 app.use(cors())
 app.use(bodyParser.json())
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use('/', (req,res) => {
+  res.sendFile(path.join(_dirname + 'dist'))
+})
 
 let devDatabase = {
   database: 'postgres',
