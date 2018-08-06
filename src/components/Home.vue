@@ -27,18 +27,23 @@
                    Translate
             </b-button>
          </div>
-         <div class="bodyText" v-if="this.translating" >
-           <p :class = "textClass()">{{body}}</p>
-           <form @submit.prevent="saveFavorite">
-               <b-btn type="submit">Save favorite</b-btn>
-           </form>
-         </div>
+           <div class="bodyText" v-if="this.translating" >
+               <div class = "firstDiv">
+                 <p :class = "textClass()">{{body}}</p>
+              </div>
+              <div class = "secondDiv">
+                 <form  @submit.prevent="saveFavorite">
+                     <b-btn class = "favoriteButton" type="submit">Save favorite</b-btn>
+                 </form>
+             </div>
+           </div>
       </b-card >
     </div>
 </template>
 
 <script>
 import api from '@/api'
+
 export default {
   data () {
     return {

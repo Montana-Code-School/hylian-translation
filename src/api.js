@@ -18,7 +18,7 @@ export default {
     })
   },
   getFavorites () {
-    return this.execute('get', '/favorites')
+    return this.execute('get', '/getAll')
   },
   getFavorite (id) {
     return this.execute('get', `/favorites/${id}`)
@@ -33,7 +33,7 @@ export default {
     return this.execute('delete', `/favorites/${id}`)
   },
   createUser (data) {
-    return this.execute('post', `/users`, data)
+    return this.execute('post', `/makeOne`, data)
   },
   updateUser (id, data) {
     return this.execute('put', `/users/${id}`, data)

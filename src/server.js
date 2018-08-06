@@ -92,6 +92,7 @@ let userResource = epilogue.resource({
 })
 
 app.use('/makeOne', (req, res) => {
+  console.log("req.body", req.body);
   User.create({
     name: req.body.name,
     email: req.body.email,

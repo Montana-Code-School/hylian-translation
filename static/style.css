@@ -181,3 +181,12 @@ button.btn.buttonCustom.btn-secondary {
   display: flex;
   justify-content: center;
 }
+
+
+.firstDiv {
+  width: 83%;
+}
+
+.secondDiv {
+  width: 17%;
+}
