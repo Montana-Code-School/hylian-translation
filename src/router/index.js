@@ -5,6 +5,7 @@ import Home from '@/components/Home'
 import PostsManager from '@/components/PostsManager'
 import Login from '@/components/Login'
 import Profile from '@/components/Profile'
+import SignUp from '@/components/SignUp'
 import auth from '@/auth'
 
 Vue.use(Router)
@@ -23,6 +24,11 @@ let router = new Router({
       path: '/login',
       name: 'Login',
       component: Login
+    },
+    {
+      path: '/signup',
+      name: 'Sign Up',
+      component: SignUp
     },
     {
       path: '/posts-manager',

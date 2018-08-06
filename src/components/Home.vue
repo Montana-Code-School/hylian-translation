@@ -1,43 +1,42 @@
 <template>
   <div class = "classDiv">
     <b-card class ="backgroundCard">
-    <div class="hero">
-      <b-img src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="Triforce" />
-      <h1 class="display-3">A Language Between Worlds</h1></br>
+      <div class="hero">
+        <b-img src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="Triforce" />
+        <h1 class="display-3">A Language Between Worlds</h1></br>
+      </div>
+      <p class="subtext">Hylian Translator</p>
+          <div class="languageSelect">
+            <h3>From:</h3>
+            <b-form-select  v-model="selected" :options="options" class="select" />
+            <h3>To:</h3>
+            <b-form-select  v-model="selected1" :options="options1" class="select" />
+          </div>
+          </br>
+          <div class="text">
+            <b-form-group label="Translator">
+              <b-form-textarea :class = "keyboardClass()" placeholder = "Enter phrase to be translated..."
+                v-model="body" rows="3"></b-form-textarea>
+            </b-form-group>
+              <div v-if="this.notEnglish" :class = "keyboardClass()" class="keypad">
+                <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row1letters"></div>
+                <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row2letters"></div>
+                <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row3letters"></div>
+              </div>
+            <b-button v-on:click="translate" class = "buttonCustom" >
+                   Translate
+            </b-button>
+         </div>
+         <div class="bodyText" v-if="this.translating" >
+           <p :class = "textClass()">{{body}}</p>
+           <form @submit.prevent="saveFavorite">
+               <b-btn type="submit">Save favorite</b-btn>
+           </form>
+         </div>
+      </b-card >
     </div>
-    <p class="subtext">Hylian Translator</p>
-        <div class="languageSelect">
-          <h3>From:</h3>
-          <b-form-select  v-model="selected" :options="options" class="select" />
-          <h3>To:</h3>
-          <b-form-select  v-model="selected1" :options="options1" class="select" />
-        </div>
-        </br>
-        <div class="text">
-          <b-form-group label="Translator">
-            <b-form-textarea :class = "keyboardClass()" placeholder = "Enter phrase to be translated..."
-              v-model="body" rows="3"></b-form-textarea>
-          </b-form-group>
-            <div v-if="this.notEnglish" :class = "keyboardClass()" class="keypad">
-              <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row1letters"></div>
-              <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row2letters"></div>
-              <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row3letters"></div>
-            </div>
-          <b-button v-on:click="translate" id = "buttonCustom" >
-                 Translate
-          </b-button>
-       </div>
-       <div class="text" v-if="this.translating" >
-         <p :class = "textClass()">{{body}}</p>
-         <form @submit.prevent="saveFavorite">
-           <div>
-             <b-btn type="submit" variant="success">Save favorite</b-btn>
-           </div>
-         </form>
-       </div>
-    </b-card >
-  </div>
 </template>
+
 <script>
 import api from '@/api'
 export default {

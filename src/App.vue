@@ -8,6 +8,7 @@
           <b-nav-item to="/">Home</b-nav-item>
           <b-nav-item v-if="loggedIn" to="/posts-manager">Favorites</b-nav-item>
           <b-nav-item v-if="loggedIn" to="/profile">Profile</b-nav-item>
+          <b-nav-item v-if="!loggedIn" to="/signup" >Sign Up</b-nav-item>
           <b-nav-item v-if="!loggedIn" to="/login" >Login</b-nav-item>
           <b-nav-item v-if="loggedIn"  to="/logout">Logout</b-nav-item>
         </b-navbar-nav>

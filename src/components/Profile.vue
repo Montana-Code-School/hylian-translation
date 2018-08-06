@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h2>Profile</h2>
-    <p>Welcome <b>{{name}}</b>!</p>
+  <div class = "container">
+    <b-card class ="profileCard">
+      <h2>Profile</h2>
+      <p>Welcome <b>{{name}}</b>!</p>
+    </b-card>
   </div>
 </template>
 <script>

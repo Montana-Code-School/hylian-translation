@@ -1,5 +1,6 @@
 <template>
   <div class="container-fluid mt-4">
+    <b-card class ="SignUpCard">
     <h1 class="h1">Favorites Manager</h1>
     <b-alert :show="loading" variant="info">Loading...</b-alert>
     <b-row>
@@ -9,7 +10,6 @@
             <tr>
               <th>ID</th>
               <th>Updated At</th>
-              <th>Original Phrase</th>
               <th>Translation</th>
             </tr>
           </thead>
@@ -19,7 +19,6 @@
               <td>{{ favorite.updatedAt }}</td>
               <td>{{ favorite.body }}</td>
               <td class="text-right">
-                <a href="#" @click.prevent="populateFavoriteToEdit(favorite)">Edit</a> -
                 <a href="#" @click.prevent="deleteFavorite(favorite.id)">Delete</a>
               </td>
             </tr>
@@ -27,10 +26,9 @@
         </table>
       </b-col>
       <b-col lg="3">
-        <b-card :title="(model.id ? 'Edit Favorite ID#' + model.id : 'New Favorite')">
-        </b-card>
       </b-col>
     </b-row>
+  </b-card>
   </div>
 </template>
 

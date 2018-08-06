@@ -54,14 +54,24 @@ html, body {
   }
 .languageSelect{
   display: flex;
-  margin-left: 225px;
-  margin-right: 225px;
   align-items: row;
   color: white;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}
+.bodyText{
+  display:flex;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  color: white;
+  flex-direction: row;
 }
 .text{
-  margin-left: 225px;
-  margin-right: 225px;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
   color: white;
 }
 .twilight-text{
@@ -80,11 +90,10 @@ html, body {
   margin-left: 10px;
   margin-right: 10px;
 }
-#buttonCustom{
+.buttonCustom {
    display: flex;
    align-items: center;
-   justify-content: center;
-   margin-left: 280px;
+   margin:auto;
 }
 .card.backgroundCard {
   background-color: black;
@@ -93,6 +102,49 @@ html, body {
   border-radius:20px;
   margin-top:50px;
   margin-bottom: 50px;
+  color: white;
+  align-items: center;
+}
+.card.loginCard {
+  background-color: black;
+  opacity:0.9;
+  max-width:75rem;
+  border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+  height: 25rem;
+  width: 90%;
+  justify-content: center;
+  padding-top: 75px;
+}
+.card.profileCard {
+  background-color: black;
+  opacity:0.9;
+  border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+  height: 25rem;
+  width: 99%;
+  justify-content: center;
+  padding-top: 75px;
+}
+.card.SignUpCard {
+  background-color: black;
+  opacity:0.9;
+  max-width:75rem;
+  border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+  height: 25rem;
+  width: 90%;
+  justify-content: center;
+  padding-top: 25px;
 }
 .classDiv {
   display: flex;
@@ -115,4 +167,17 @@ html, body {
 
 .keypad > div {
   display: block;
+}
+
+.loginInput {
+  min-width:99%;
+}
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn.centerButton {
+  display: flex;
+  justify-content: center;
 }
