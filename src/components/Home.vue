@@ -9,16 +9,21 @@
     <p class="subtext">Hylian Translator</p>
         <div class="languageSelect">
           <h3>From:</h3>
-          <b-form-select v-model="selected" :options="options" class="select" />
+          <b-form-select v-on:change= "englishTest"  v-model="selected" :options="options" class="select" />
           <h3>To:</h3>
-          <b-form-select v-model="selected1" :options="options1" class="select" />
+          <b-form-select  v-model="selected1" :options="options1" class="select" />
         </div>
         </br>
         <div class="text">
           <b-form-group label="Translator">
-            <b-form-textarea placeholder = "Enter phrase to be translated..."
+            <b-form-textarea :class = "keyboardClass()" placeholder = "Enter phrase to be translated..."
               v-model="body" rows="6"></b-form-textarea>
           </b-form-group>
+            <div v-show="this.notEnglish" :class = "keyboardClass()" class="keypad">
+              <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row1letters"></div>
+              <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row2letters"></div>
+              <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row3letters"></div>
+            </div>
           <b-button v-on:click="translate" id = "buttonCustom" >
                  Translate
           </b-button>
@@ -58,8 +63,15 @@ export default {
       ],
       phrase: '',
       body: '',
-      translating: false
+      translating: false,
+      row1letters: ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+      row2letters: ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+      row3letters: ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
+      notEnglish: false
     }
+  },
+  beforeUpdate: {
+    notEnglish()
   },
   methods: {
     greet: function (event) {
@@ -67,6 +79,7 @@ export default {
       alert('You have saved this phrase to your favorites.')
     },
     textClass () {
+      console.log(this.selected1);
       switch (this.selected1) {
         case 'Skyward Sword Ancient Hylian':
           return 'ancient-text'
@@ -85,6 +98,35 @@ export default {
       console.log(this.body);
       api.createFavorite(this.body)
     },
+    keyboardClass () {
+      switch (this.selected) {
+        case 'Skyward Sword Ancient Hylian':
+          return 'ancient-text'
+        case 'Twilight Princess Hylian':
+          return 'twilight-text'
+        case 'BotW Sheikah':
+          return 'sheikah-text'
+        default:
+          return 'Sans-Serif'
+      }
+    },
+    englishTest () {
+      switch (this.selected) {
+        case 'Skyward Sword Ancient Hylian':
+          this.notEnglish = true;
+          break;
+        case 'Twilight Princess Hylian':
+          this.notEnglish = true;
+          break;
+        case 'BotW Sheikah':
+          this.notEnglish = true;
+          break;
+        default:
+          this.notEnglish = false;
+          break;
+      }
+      console.log(this.selected);
+    }
   }
 }
 </script>
@@ -174,5 +216,18 @@ export default {
   .textClass {
     font-family: Ancient;
     font-size: 30px
+  }
+  .keypad {
+    position: absolute;
+    border: 1px solid #ccc;
+    padding: 10px;
+    cursor: move;
+    z-index: 21;
+    text-align: center;
+    background-color: #F0F8FF;
+  }
+
+  .keypad > div {
+    display: block;
   }
   </style>
