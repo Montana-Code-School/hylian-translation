@@ -12,7 +12,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')))
 
-let devDatabase = new Sequelize({
+let devDatabase = {
   database: 'postgres',
   username: 'claireobrien',
   password: null,
@@ -26,17 +26,19 @@ let devDatabase = new Sequelize({
     acquire: 30000,
     idle: 10000
   }
-})
-
-let productionDatabase = new Sequelize(process.env.DATABASE_URL)
-
-let database;
-
-if (process.env.DATABASE_URL) {
-  database = productionDatabase
-} else {
-  database = devDatabase
 }
+
+let productionDatabase = process.env.DATABASE_URL
+
+let databaseData;
+
+if (process.env.DATABASE_URL === undefined) {
+  databaseData = devDatabase
+} else {
+  databaseData = productionDatabase
+}
+
+const database = new Sequelize(databaseData)
 
 // // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically

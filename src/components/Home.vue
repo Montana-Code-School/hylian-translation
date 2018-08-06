@@ -17,7 +17,7 @@
         <div class="text">
           <b-form-group label="Translator">
             <b-form-textarea :class = "keyboardClass()" placeholder = "Enter phrase to be translated..."
-              v-model="body" rows="6"></b-form-textarea>
+              v-model="body" rows="3"></b-form-textarea>
           </b-form-group>
             <div v-if="this.notEnglish" :class = "keyboardClass()" class="keypad">
               <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row1letters"></div>
