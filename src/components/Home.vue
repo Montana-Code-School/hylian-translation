@@ -9,7 +9,7 @@
     <p class="subtext">Hylian Translator</p>
         <div class="languageSelect">
           <h3>From:</h3>
-          <b-form-select v-on:change= "englishTest"  v-model="selected" :options="options" class="select" />
+          <b-form-select  v-model="selected" :options="options" class="select" />
           <h3>To:</h3>
           <b-form-select  v-model="selected1" :options="options1" class="select" />
         </div>
@@ -19,7 +19,7 @@
             <b-form-textarea :class = "keyboardClass()" placeholder = "Enter phrase to be translated..."
               v-model="body" rows="6"></b-form-textarea>
           </b-form-group>
-            <div v-show="this.notEnglish" :class = "keyboardClass()" class="keypad">
+            <div v-if="this.notEnglish" :class = "keyboardClass()" class="keypad">
               <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row1letters"></div>
               <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row2letters"></div>
               <div><input @click="body += letter" :value="letter" type="button" v-for="letter in row3letters"></div>
@@ -70,9 +70,7 @@ export default {
       notEnglish: false
     }
   },
-  beforeUpdate: {
-    notEnglish()
-  },
+
   methods: {
     greet: function (event) {
       // `this` inside methods points to the Vue instance
@@ -95,19 +93,26 @@ export default {
       this.translating = true
     },
     saveFavorite () {
-      console.log(this.body);
       api.createFavorite(this.body)
     },
     keyboardClass () {
       switch (this.selected) {
         case 'Skyward Sword Ancient Hylian':
+          this.notEnglish = true;
           return 'ancient-text'
+          break;
         case 'Twilight Princess Hylian':
-          return 'twilight-text'
+          this.notEnglish = true;
+          return 'twilight-text';
+          break;
         case 'BotW Sheikah':
-          return 'sheikah-text'
+          this.notEnglish = true;
+          return 'sheikah-text';
+          break;
         default:
-          return 'Sans-Serif'
+          this.notEnglish = false;
+          return 'Sans-Serif';
+          break;
       }
     },
     englishTest () {
@@ -125,7 +130,6 @@ export default {
           this.notEnglish = false;
           break;
       }
-      console.log(this.selected);
     }
   }
 }
@@ -206,7 +210,6 @@ export default {
     opacity:0.9;
     max-width:75rem;
     border-radius:20px;
-    margin-top:100px;
   }
   .classDiv {
     display: flex;
@@ -218,13 +221,12 @@ export default {
     font-size: 30px
   }
   .keypad {
-    position: absolute;
-    border: 1px solid #ccc;
     padding: 10px;
     cursor: move;
     z-index: 21;
     text-align: center;
-    background-color: #F0F8FF;
+    background-color: black;
+    opacity:0.9;
   }
 
   .keypad > div {

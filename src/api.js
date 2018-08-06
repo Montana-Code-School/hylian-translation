@@ -1,10 +1,12 @@
 // import Vue from 'vue'
 import axios from 'axios'
+const URL = (process.env.DATABASE_URL) ? 'https://powerful-lake-84714.herokuapp.com/' : 'http://localhost:8081/'
 
 const client = axios.create({
-  baseURL: 'http://localhost:8081/',
+  baseURL: 'URL',
   json: true
 })
+
 
 export default {
  async execute (method, resource, data) {
@@ -37,5 +39,5 @@ export default {
   updateUser (id, data) {
     return this.execute('put', `/users/${id}`, data)
   },
-  
+
 }

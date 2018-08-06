@@ -5,31 +5,39 @@ const Sequelize = require('sequelize')
 const epilogue = require('epilogue')
 const bcrypt = require('bcrypt')
 const path = require('path')
+const PORT = process.env.PORT || 8081
 
 let app = express()
 app.use(cors())
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'dist')))
 
-// let database = new Sequelize({
-//   database: 'postgres',
-//   username: 'claireobrien',
-//   password: null,
-//   host: 'localhost',
-//   dialect: 'postgres',
-//   operatorsAliases: false,
-//
-//   pool: {
-//     max: 5,
-//     min: 0,
-//     acquire: 30000,
-//     idle: 10000
-//   }
-// })
+let devDatabase = new Sequelize({
+  database: 'postgres',
+  username: 'claireobrien',
+  password: null,
+  host: 'localhost',
+  dialect: 'postgres',
+  operatorsAliases: false,
 
-let database = new Sequelize(process.env.DATABASE_URL)
-//
-// const database = (process.env.NODE_ENV === 'production') ? productionDatabase : devDatabase
+  pool: {
+    max: 5,
+    min: 0,
+    acquire: 30000,
+    idle: 10000
+  }
+})
+
+let productionDatabase = new Sequelize(process.env.DATABASE_URL)
+
+let database;
+
+if (process.env.DATABASE_URL) {
+  database = productionDatabase
+} else {
+  database = devDatabase
+}
+
 // // Define our Post model
 // id, createdAt, and updatedAt are added by sequelize automatically
 let Favorite = database.define('favorites', {
@@ -98,7 +106,7 @@ app.use('/getall', (req, res) => {
 database
   .sync({ force: true })
   .then(() => {
-    app.listen(8081, () => {
+    app.listen(PORT, () => {
       console.log('listening to port localhost:8081')
     })
 })
