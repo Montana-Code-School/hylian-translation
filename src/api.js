@@ -1,12 +1,13 @@
 // import Vue from 'vue'
 import axios from 'axios'
-const URL = (process.env.DATABASE_URL) ? 'https://powerful-lake-84714.herokuapp.com/' : 'http://localhost:8081/'
+let URL = (process.env.DATABASE_URL) ? 'https://powerful-lake-84714.herokuapp.com/' : 'http://localhost:8081/'
 
 const client = axios.create({
   baseURL: URL,
   json: true
 })
 
+console.log("URL", URL);
 
 export default {
  async execute (method, resource, data) {
