@@ -1,6 +1,6 @@
 <template>
   <div class = "classDiv">
-    <b-card id ="backgroundCard">
+    <b-card class ="backgroundCard">
     <div class="hero">
       <b-img src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="Triforce" />
       <h1 class="display-3">A Language Between Worlds</h1></br>
