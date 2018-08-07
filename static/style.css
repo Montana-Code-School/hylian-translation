@@ -127,10 +127,9 @@ button.btn.buttonCustom.btn-secondary {
   margin-bottom: 50px;
   color: white;
   align-items: center;
-  height: 25rem;
   width: 99%;
   justify-content: center;
-  padding-top: 75px;
+  display: flex;
 }
 .card.SignUpCard {
   background-color: black;

@@ -92,7 +92,6 @@ let userResource = epilogue.resource({
 })
 
 app.use('/makeOne', (req, res) => {
-  console.log("req.body", req.body);
   User.create({
     name: req.body.name,
     email: req.body.email,
@@ -105,6 +104,11 @@ app.use('/makeOne', (req, res) => {
 app.use('/getall', (req, res) => {
   User.findAll({include: [ Favorite ] }).then(users => res.json(users))
 })
+
+app.use('/getOne/:user_id', (req, res) => {
+  User.findById(req.params.user_id).then(user => res.json(user))
+})
+
 
 // Resets the database and launches the express app on :8081
 database

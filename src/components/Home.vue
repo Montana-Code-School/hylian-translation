@@ -28,6 +28,7 @@
             </b-button>
          </div>
            <div class="bodyText" v-if="this.translating" >
+              <canvas id="myCanvas" width="200" height="100" style="color:white;"></canvas>
                <div class = "firstDiv">
                  <p :class = "textClass()">{{body}}</p>
               </div>
