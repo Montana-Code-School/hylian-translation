@@ -37,6 +37,25 @@
                      <b-btn class = "favoriteButton" type="submit">Save favorite</b-btn>
                  </form>
              </div>
+               <canvas
+                  id="myCanvas"
+                    width="200"
+                      height="100"
+                        style="border:1px solid #000000;">
+               </canvas>
+                <form id="myForm">
+                  <div class="form-group">
+                    <label for="myMessage">Message</label>
+                    <input type="text" name="myMessage" id="myMessage"/>
+                  </div>
+                  <button type="submit">
+                    Add Text
+                  </button>
+                </form>
+                <hr/>
+                <button type="button" id="myDownload">
+                Download
+                </button>
            </div>
       </b-card >
     </div>

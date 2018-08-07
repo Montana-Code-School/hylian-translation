@@ -15,7 +15,8 @@ export default {
       password: pass
     }).then(response => {
       if (response.status === 'SUCCESS') {
-        localStorage.token = response.token
+        localStorage.token = response.sessionToken
+        localStorage.email = response.user.profile.login
         if (cb) cb(true)
         this.onChange(true)
       }
@@ -32,6 +33,7 @@ export default {
 
   logout (cb) {
     delete localStorage.token
+    delete localStorage.email
     if (cb) cb()
     this.onChange(false)
     return authClient.signOut()

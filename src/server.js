@@ -91,7 +91,7 @@ let userResource = epilogue.resource({
   endpoints: ['/users', '/users/:id']
 })
 
-app.use('/makeOne', (req, res) => {
+app.use('/make-one', (req, res) => {
   User.create({
     name: req.body.name,
     email: req.body.email,
@@ -101,18 +101,23 @@ app.use('/makeOne', (req, res) => {
   }).then(data => res.json(data))
 })
 
-app.use('/getall', (req, res) => {
+app.use('/get-all', (req, res) => {
   User.findAll({include: [ Favorite ] }).then(users => res.json(users))
 })
 
-app.use('/getOne/:user_id', (req, res) => {
-  User.findById(req.params.user_id).then(user => res.json(user))
+app.use('/get-one/:user_id', (req, res) => {
+  User.findById(req.params.user_id)
+  .then(user => res.json(user))
 })
 
+app.use('/get-email/:user_email', (req, res) => {
+  User.findOne({where: {email:req.params.user_email}})
+  .then(user => res.json(user))
+})
 
 // Resets the database and launches the express app on :8081
 database
-  .sync({ force: true })
+  .sync({force: false})
   .then(() => {
     app.listen(PORT, () => {
       console.log(`listening to port ${PORT}`)

@@ -168,9 +168,6 @@ button.btn.buttonCustom.btn-secondary {
   display: block;
 }
 
-.loginInput {
-  min-width:99%;
-}
 .container{
   display: flex;
   align-items: center;
@@ -188,4 +185,12 @@ button.btn.buttonCustom.btn-secondary {
 
 .secondDiv {
   width: 17%;
+}
+
+.carouselDiv {
+    width: 90%;
+}
+
+.name{
+  color: white;
 }

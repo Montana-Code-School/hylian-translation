@@ -1,0 +1,3 @@
+app.use('/getOne/:user_id', (req, res) => {
+  User.findById(req.params.user_id).then(user => res.json(user))
+})

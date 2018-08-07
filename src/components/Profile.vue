@@ -1,8 +1,7 @@
 <template>
   <div class = "container">
     <b-card class ="profileCard">
-      <h2>Profile</h2>
-      <p>Welcome <b></b>!</p>
+      <h2>Welcome <b>{{name}}</b>!</h2>
       <image-carousel></image-carousel>
     </b-card>
   </div>
@@ -13,18 +12,20 @@
   export default {
     data () {
       return {
-        user:{}
+        user: {},
+        name: ''
       }
-    },
-    created(){
-      console.log(api.getUser('5ce3b3b0-9a5e-11e8-816b-672816728a33'));
     },
     components:{
       ImageCarousel
     },
+    created() {
+      this.getName()
+    },
     methods: {
-      getName() {
-        this.user = api.getUser('5ce3b3b0-9a5e-11e8-816b-672816728a33')
+      async getName() {
+        this.user = await api.getUserByEmail(localStorage.email)
+        this.name = this.user.name
       }
     }
   }
@@ -32,4 +33,5 @@
 
 <style>
 @import '../../static/style.css';
+
 </style>

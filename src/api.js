@@ -3,7 +3,7 @@ import axios from 'axios'
 let URL = (process.env.DATABASE_URL) ? 'https://powerful-lake-84714.herokuapp.com/' : 'http://localhost:8081/'
 
 const client = axios.create({
-  baseURL: 'https://powerful-lake-84714.herokuapp.com/',
+  baseURL: 'http://localhost:8081',
   json: true
 })
 
@@ -17,8 +17,8 @@ export default {
       return req.data
     })
   },
-  getFavorites () {
-    return this.execute('get', '/getAll')
+  getUsers () {
+    return this.execute('get', '/get-all')
   },
   getFavorite (id) {
     return this.execute('get', `/favorites/${id}`)
@@ -33,13 +33,16 @@ export default {
     return this.execute('delete', `/favorites/${id}`)
   },
   createUser (data) {
-    return this.execute('post', `/makeOne`, data)
+    return this.execute('post', `/make-one`, data)
   },
   updateUser (id, data) {
     return this.execute('put', `/users/${id}`, data)
   },
-  getUser (id) {
-    return this.execute('get', `/getOne/${id}`)
+  getUserByID (id) {
+    return this.execute('get', `/get-one/${id}`)
   },
+  getUserByEmail (email) {
+    return this.execute('get', `/get-email/${email}`)
+  }
 
 }
