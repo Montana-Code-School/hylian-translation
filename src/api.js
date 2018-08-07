@@ -3,7 +3,7 @@ import axios from 'axios'
 let URL = (process.env.DATABASE_URL) ? 'https://powerful-lake-84714.herokuapp.com/' : 'http://localhost:8081/'
 
 const client = axios.create({
-  baseURL: 'http://localhost:8081',
+  baseURL: 'https://powerful-lake-84714.herokuapp.com/',
   json: true
 })
 
