@@ -19,16 +19,28 @@
                 v-model="message" rows="3"></b-form-textarea>
             </b-form-group>
               <div v-if="this.notEnglish" :class = "keyboardClass()" class="keypad">
-                <div><input @click="message += letter" :value="letter" type="button" v-for="letter in row1letters"></div>
-                <div><input @click="message += letter" :value="letter" type="button" v-for="letter in row2letters"></div>
-                <div><input @click="message += letter" :value="letter" type="button" v-for="letter in row3letters"></div>
+                <div><input @click="message += letter" :title = "letter" :value="letter" type="button" v-for="letter in row1letters"></div>
+                <div><input @click="message += letter" :title = "letter" :value="letter" type="button" v-for="letter in row2letters"></div>
+                <div><input @click="message += letter" :title = "letter" :value="letter" type="button" v-for="letter in row3letters"></div>
               </div>
             <b-button v-on:click="translate" class = "buttonCustom" >
                    Translate
             </b-button>
          </div>
-         <div v-if="this.translating">
-           <canvas  style="border:1px solid #BBB; background-color: white; width: 99%; height: 300px;" v-insert-message="{text:message, style: font}"></canvas>
+         <div v-show="this.translating">
+           <canvas ref="my-canvas" width= "1000" height= "100"
+                style="border:1px solid #BBB; background-color: white; margin-left: auto; margin-right: auto;display: block;"
+                    v-insert-message="{text:message, style: font}"></canvas>
+          <div class = "buttonDiv">
+           <b-button v-on:click="reset" class = "moreButtons">
+                  Reset
+           </b-button>
+           <a id="download" download="canvas.png" href="">
+              <b-button v-on:click="download" class = "moreButtons" >
+                    Download
+             </b-button>
+           </a>
+         </div>
          </div>
       </b-card >
     </div>
@@ -38,6 +50,7 @@
 import api from '@/api'
 
 export default {
+
   data () {
     return {
       text: '',
@@ -48,14 +61,14 @@ export default {
         { value: 'English', text: 'English' },
         { value: 'Skyward Sword Ancient Hylian', text: 'Skyward Sword Ancient Hylian' },
         { value: 'Twilight Princess Hylian', text: 'Twilight Princess Hylian' },
-        { value: 'BotW Sheikah', text: 'BotW Sheikah' }
+        { value: 'Breath of the Wild Sheikah', text: 'Breath of the Wild Sheikah' }
       ],
       options1: [
         { value: null, text: 'Please select an option' },
         { value: 'English', text: 'English' },
         { value: 'Skyward Sword Ancient Hylian', text: 'Skyward Sword Ancient Hylian' },
         { value: 'Twilight Princess Hylian', text: 'Twilight Princess Hylian' },
-        { value: 'BotW Sheikah', text: 'BotW Sheikah' }
+        { value: 'Breath of the Wild Sheikah', text: 'Breath of the Wild Sheikah' }
       ],
       phrase: '',
       body: '',
@@ -65,7 +78,9 @@ export default {
       row3letters: ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
       notEnglish: false,
       message: '',
-      font: '40px Sans-Serif'
+      font: '20px Sans-Serif',
+      canvas: '',
+      context: ''
     }
   },
   directives: {
@@ -80,26 +95,44 @@ export default {
           ctx.fillText(binding.value.text, 10, 50);
       }
   },
-  watch: {
-      message: function() {
-          console.log("message changed to " + this.message);
-      }
-    },
+  mounted (){
+    this.canvas = this.$refs['my-canvas']
+    this.context = this.$refs['my-canvas'].getContext('2d')
+
+  },
   methods: {
+    reset () {
+      this.context.clearRect(0, 0, 600, 100)
+      this.message = ''
+      this.translating = false
+      this.selected= null
+      this.selected1= null
+
+    },
+    download (el) {
+      console.log("el", el);
+      var image = this.canvas.toDataURL("image/png");
+      el.target.parentElement.href = image
+    },
     textClass () {
       switch (this.selected1) {
+        case 'English':
+          this.context.clearRect(0, 0, 1000, 100)
+          this.font = '40px Sans-Serif';
+          break;
         case 'Skyward Sword Ancient Hylian':
+          this.context.clearRect(0, 0, 1000, 100)
           this.font =  '40px Ancient';
           break;
         case 'Twilight Princess Hylian':
+          this.context.clearRect(0, 0, 1000, 100)
           this.font = '40px Twilight';
           break;
-        case 'BotW Sheikah':
+        case 'Breath of the Wild Sheikah':
+          this.context.clearRect(0, 0, 1000, 100)
           this.font = '40px Sheikah';
           break;
-        default:
-          this.font = '40px Sans-Serif';
-          break;
+
       }
     },
     translate () {
@@ -108,7 +141,7 @@ export default {
     saveFavorite () {
       api.createFavorite(this.body)
     },
-    keyboardClass () {
+    keyboardClass (){
       switch (this.selected) {
         case 'Skyward Sword Ancient Hylian':
           this.notEnglish = true;
@@ -118,7 +151,7 @@ export default {
           this.notEnglish = true;
           return 'twilight-text';
           break;
-        case 'BotW Sheikah':
+        case 'Breath of the Wild Sheikah':
           this.notEnglish = true;
           return 'sheikah-text';
           break;

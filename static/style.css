@@ -199,3 +199,11 @@ button.btn.buttonCustom.btn-secondary {
 .name{
   color: white;
 }
+.buttonDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.moreButtons {
+  margin: 10px;
+}
