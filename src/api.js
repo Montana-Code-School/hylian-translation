@@ -1,6 +1,7 @@
 // import Vue from 'vue'
 import axios from 'axios'
-let URL = (process.env.DATABASE_URL) ? 'https://powerful-lake-84714.herokuapp.com/' : 'http://localhost:8081/'
+let URL = (process.env.DATABASE_URL) ? 'https://powerful-lake-84714.herokuapp.com/' :
+    'http://localhost:8081/'
 
 const client = axios.create({
   baseURL: 'https://powerful-lake-84714.herokuapp.com/',
@@ -44,5 +45,4 @@ export default {
   getUserByEmail (email) {
     return this.execute('get', `/get-email/${email}`)
   }
-
 }

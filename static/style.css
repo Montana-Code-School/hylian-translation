@@ -74,6 +74,11 @@ html, body {
   padding: 10px;
   color: white;
 }
+.canvas {
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}
 .twilight-text{
   font-family: Twilight;
   font-size: 30px;

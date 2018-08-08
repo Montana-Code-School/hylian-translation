@@ -46,7 +46,7 @@ let router = new Router({
         auth.logout()
         next('/')
       }
-    }
+    },
   ]
 })
 
