@@ -12,7 +12,6 @@
                 @sliding-start="onSlideStart"
                 @sliding-end="onSlideEnd"
     >
-
       <!-- Slides with image only -->
       <b-carousel-slide
         img-src="https://i.ytimg.com/vi/c4bvZZa5Mtg/maxresdefault.jpg"
@@ -96,6 +95,7 @@
             alt="Breath of the Wild"
               style = "height:450px; width:800px">
       </b-carousel-slide>
+
     </b-carousel>
   </div>
 </template>
@@ -120,6 +120,6 @@ export default {
 </script>
 
 <style>
-@import '../../static/style.css';
+  @import '../../static/style.css';
 </style>
 <!-- carousel-1.vue -->

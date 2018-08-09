@@ -30,18 +30,19 @@
          <div v-show="this.translating">
            <canvas ref="my-canvas" width= "1000" height= "100"
                 style="border:1px solid #BBB; background-color: white; margin-left: auto; margin-right: auto;display: block;"
-                    v-insert-message="{text:message, style: font}"></canvas>
+                    v-insert-message="{text:message, style: font}">
+           </canvas>
           <div class = "buttonDiv">
-           <b-button v-on:click="reset" class = "moreButtons">
-                  Reset
-           </b-button>
-           <a id="download" download="canvas.png" href="">
+            <b-button v-on:click="reset" class = "moreButtons">
+                    Reset
+            </b-button>
+            <a id="download" download="canvas.png" href="">
               <b-button v-on:click="download" class = "moreButtons" >
-                    Download
-             </b-button>
-           </a>
-         </div>
-         </div>
+                      Download
+              </b-button>
+            </a>
+          </div>
+        </div>
       </b-card >
     </div>
 </template>
@@ -50,7 +51,6 @@
 import api from '@/api'
 
 export default {
-
   data () {
     return {
       text: '',

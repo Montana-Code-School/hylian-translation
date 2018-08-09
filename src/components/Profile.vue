@@ -6,6 +6,7 @@
     </b-card>
   </div>
 </template>
+
 <script>
   import api from '@/api'
   import ImageCarousel from './ImageCarousel'
@@ -32,6 +33,5 @@
 </script>
 
 <style>
-@import '../../static/style.css';
-
+  @import '../../static/style.css';
 </style>

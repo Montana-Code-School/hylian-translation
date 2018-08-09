@@ -51,7 +51,5 @@
 </script>
 
 <style>
-@import '../../static/style.css';
-
-
+  @import '../../static/style.css';
 </style>
