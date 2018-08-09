@@ -61,14 +61,16 @@ export default {
         { value: 'English', text: 'English' },
         { value: 'Skyward Sword Ancient Hylian', text: 'Skyward Sword Ancient Hylian' },
         { value: 'Twilight Princess Hylian', text: 'Twilight Princess Hylian' },
-        { value: 'Breath of the Wild Sheikah', text: 'Breath of the Wild Sheikah' }
+        { value: 'Breath of the Wild Sheikah', text: 'Breath of the Wild Sheikah' },
+        { value: 'Gerudo', text: 'Gerudo' }
       ],
       options1: [
         { value: null, text: 'Please select an option' },
         { value: 'English', text: 'English' },
         { value: 'Skyward Sword Ancient Hylian', text: 'Skyward Sword Ancient Hylian' },
         { value: 'Twilight Princess Hylian', text: 'Twilight Princess Hylian' },
-        { value: 'Breath of the Wild Sheikah', text: 'Breath of the Wild Sheikah' }
+        { value: 'Breath of the Wild Sheikah', text: 'Breath of the Wild Sheikah' },
+        { value: 'Gerudo', text: 'Gerudo' }
       ],
       phrase: '',
       body: '',
@@ -78,7 +80,7 @@ export default {
       row3letters: ['z', 'x', 'c', 'v', 'b', 'n', 'm'],
       notEnglish: false,
       message: '',
-      font: '20px Sans-Serif',
+      font: '40px Sans-Serif',
       canvas: '',
       context: ''
     }
@@ -110,7 +112,6 @@ export default {
 
     },
     download (el) {
-      console.log("el", el);
       var image = this.canvas.toDataURL("image/png");
       el.target.parentElement.href = image
     },
@@ -122,7 +123,7 @@ export default {
           break;
         case 'Skyward Sword Ancient Hylian':
           this.context.clearRect(0, 0, 1000, 100)
-          this.font =  '40px Ancient';
+          this.font =  '40px SS-Ancient';
           break;
         case 'Twilight Princess Hylian':
           this.context.clearRect(0, 0, 1000, 100)
@@ -132,7 +133,10 @@ export default {
           this.context.clearRect(0, 0, 1000, 100)
           this.font = '40px Sheikah';
           break;
-
+        case 'Gerudo':
+          this.context.clearRect(0, 0, 1000, 100)
+          this.font = '40px Gerudo';
+          break;
       }
     },
     translate () {
@@ -154,6 +158,10 @@ export default {
         case 'Breath of the Wild Sheikah':
           this.notEnglish = true;
           return 'sheikah-text';
+          break;
+        case 'Gerudo':
+          this.notEnglish = true;
+          return 'gerudo-text';
           break;
         default:
           this.notEnglish = false;

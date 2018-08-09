@@ -117,7 +117,7 @@ app.use('/get-email/:user_email', (req, res) => {
 
 // Resets the database and launches the express app on :8081
 database
-  .sync({force: false})
+  .sync({force: true})
   .then(() => {
     app.listen(PORT, () => {
       console.log(`listening to port ${PORT}`)

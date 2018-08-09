@@ -13,8 +13,22 @@
 }
 
 @font-face {
-  font-family: Ancient;
-  src: url("../src/assets/fonts/ancient.otf");
+  font-family: Ancient64;
+  src: url("../src/assets/fonts/ancient64.otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: SS-Ancient;
+  src: url("../src/assets/fonts/ss-ancient.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gerudo;
+  src: url("../src/assets/fonts/gerudo.ttf") format('truetype');
   font-weight: normal;
   font-style: normal;
 }
@@ -47,7 +61,7 @@
 }
 html, body {
     /* The image used */
-    background-image: url("../src/assets/twilight1.jpg");
+    background-image: url("../src/assets/images/twilight1.jpg");
         /* Set rules to fill background */
    background-size: cover;
    height: 100%;
@@ -84,12 +98,16 @@ html, body {
   font-size: 30px;
 }
 .ancient-text{
-  font-family: Ancient;
-  font-size: 30px;
+  font-family: SS-Ancient;
+  font-size: 40px;
 }
 .sheikah-text{
   font-family: Sheikah;
-  font-size: 30px;
+  font-size: 40px;
+}
+.gerudo-text{
+  font-family: Gerudo;
+  font-size: 40px;
 }
 .select{
   margin-left: 10px;
@@ -157,8 +175,8 @@ button.btn.buttonCustom.btn-secondary {
    overflow: auto;
 }
 .textClass {
-  font-family: Ancient;
-  font-size: 30px
+  font-family: SS-Ancient;
+  font-size: 40px
 }
 .keypad {
   padding: 10px;
@@ -166,7 +184,6 @@ button.btn.buttonCustom.btn-secondary {
   z-index: 21;
   text-align: center;
   background-color: #000000;
-  opacity:0.9;
 }
 
 .keypad > div {
@@ -206,4 +223,7 @@ button.btn.buttonCustom.btn-secondary {
 }
 .moreButtons {
   margin: 10px;
+}
+input[type="button"] {
+  padding-top: 3px
 }
