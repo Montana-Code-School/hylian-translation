@@ -95,7 +95,7 @@ html, body {
 }
 .twilight-text{
   font-family: Twilight;
-  font-size: 30px;
+  font-size: 40px;
 }
 .ancient-text{
   font-family: SS-Ancient;
@@ -226,4 +226,8 @@ button.btn.buttonCustom.btn-secondary {
 }
 input[type="button"] {
   padding-top: 3px
+}
+
+textarea#__BVID__13{
+  font-size: 40px;
 }
