@@ -5,7 +5,7 @@
         <b-img src="https://vignette.wikia.nocookie.net/vsbattles/images/e/e6/Triforce.png/revision/latest?cb=20151115205031" alt="Triforce" />
         <h1 class="display-3">A Language Between Worlds</h1></br>
       </div>
-      <p class="subtext">Hylian Translator</p>
+      <p class="subtext">Hyrulean Translator</p>
           <div class="languageSelect">
             <h3>From:</h3>
             <b-form-select  v-model="selected" :options="options" class="select" />
@@ -174,5 +174,5 @@ export default {
 </script>
 
 <style>
-@import '../../static/style.css';
+  @import '../../static/style.css';
 </style>
