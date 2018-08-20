@@ -25,15 +25,17 @@
       return {
         error: false,
         user: {
+          name: '',
           email: '',
-          pass: ''
+          pass: '',
+          favoriteZelda:''
         },
 
       }
     },
     methods: {
        login () {
-        auth.login(this.user.email, this.user.pass, loggedIn => {
+        auth.login(this.user, loggedIn => {
           if (!loggedIn) {
             this.error = true
           } else {

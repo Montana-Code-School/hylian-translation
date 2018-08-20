@@ -6,7 +6,7 @@
                 indicators
                 background="#000000"
                 :interval="2000"
-                img-width="99%"
+                img-width="800"
                 img-height="450"
                 v-model="slide"
                 @sliding-start="onSlideStart"

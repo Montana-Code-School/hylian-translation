@@ -26,6 +26,7 @@
     methods: {
       async getName() {
         this.user = await api.getUserByEmail(localStorage.email)
+        console.log(this.user);
         this.name = this.user.name
       }
     }
