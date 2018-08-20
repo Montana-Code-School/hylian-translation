@@ -18,7 +18,7 @@ const env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env
 
-var resolve (dir) => {
+function resolve (dir) => {
     return path.join(__dirname, '..', dir)
 }
 
