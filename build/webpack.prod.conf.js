@@ -23,28 +23,6 @@ const resolve = (dir) => {
 }
 
 const webpackConfig = merge(baseWebpackConfig, {
-
-    mode: 'production',
-
-    entry: {
-        player: resolve('app/main/index.js'),
-
-        // code splitting: we take all of our vendor code and put it in a separate bundle (vendor.min.js)
-        // this way it will have better caching/cache hits since it changes infrequently
-        vendor: [
-            // local packages
-            'clipboard',
-            'jquerynotify'
-
-            // npm packages are added to vendor code separately in splitChunks config below
-        ]
-    },
-
-    output: {
-        path: resolve('app/'),
-        filename: '[name].min.js'
-    },
-
     optimization: {
         splitChunks: {
             cacheGroups: {
@@ -75,23 +53,6 @@ const webpackConfig = merge(baseWebpackConfig, {
                 }
             }
         ]
-    },
-
-    resolve: {
-        modules: [
-            resolve('app'),
-            resolve('app/css'),
-            'node_modules'
-        ],
-
-        alias: {
-            // external libraries
-            jquerynotify: resolve('app/js/jquery.notify.min'),
-            clipboard: resolve('app/js/clipboard.min'),
-
-            // directory alias to shorten template paths
-            templates: resolve('app/templates')
-        }
     },
 
     plugins: [
