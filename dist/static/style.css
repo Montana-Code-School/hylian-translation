@@ -13,8 +13,221 @@
 }
 
 @font-face {
-  font-family: Ancient;
-  src: url("../src/assets/fonts/ancient.otf");
+  font-family: Ancient64;
+  src: url("../src/assets/fonts/ancient64.otf");
   font-weight: normal;
   font-style: normal;
+}
+
+@font-face {
+  font-family: SS-Ancient;
+  src: url("../src/assets/fonts/ss-ancient.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Gerudo;
+  src: url("../src/assets/fonts/gerudo.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.hero {
+  display:flex;
+  color: white;
+  justify-content: center;
+  text-align: center;
+  flex-direction: row;
+  margin-bottom:75px;
+}
+.subtext {
+  font-weight: 250;
+  font-size: 1.5rem;
+  display:flex;
+  color: white;
+  justify-content: center;
+  text-align: center;
+  margin-top:-101px;
+  margin-left: 20px;
+}
+.hero .display-3 {
+  padding-top: 50px;
+  padding-left: 20px
+}
+.logo{
+  width: 10px;
+  height: 10px;
+}
+html, body {
+    /* The image used */
+    background-image: url("../src/assets/images/twilight1.jpg");
+        /* Set rules to fill background */
+   background-size: cover;
+   height: 100%;
+  }
+.languageSelect{
+  display: flex;
+  align-items: row;
+  color: white;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}
+.bodyText{
+  display:flex;
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  color: white;
+  flex-direction: row;
+}
+.text{
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+  color: white;
+}
+.canvas {
+  margin: auto;
+  width: 90%;
+  padding: 10px;
+}
+.twilight-text{
+  font-family: Twilight;
+  font-size: 40px;
+}
+.ancient-text{
+  font-family: SS-Ancient;
+  font-size: 40px;
+}
+.sheikah-text{
+  font-family: Sheikah;
+  font-size: 40px;
+}
+.gerudo-text{
+  font-family: Gerudo;
+  font-size: 40px;
+}
+.select{
+  margin-left: 10px;
+  margin-right: 10px;
+}
+button.btn.buttonCustom.btn-secondary {
+   display: flex;
+   align-items: center;
+   margin:auto;
+}
+.card.backgroundCard {
+  background-color: black;
+  opacity:0.9;
+  max-width:75rem;
+  border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+}
+.card.loginCard {
+  background-color: black;
+  opacity:0.9;
+  max-width:75rem;
+  border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+  height: 25rem;
+  width: 90%;
+  justify-content: center;
+  padding-top: 75px;
+}
+.card.profileCard {
+  background-color: black;
+  opacity:0.9;
+  border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+  width: 99%;
+  justify-content: center;
+  display: flex;
+}
+.card.SignUpCard {
+  background-color: black;
+  opacity:0.9;
+  max-width:75rem;
+  border-radius:20px;
+  margin-top:50px;
+  margin-bottom: 50px;
+  color: white;
+  align-items: center;
+  height: 25rem;
+  width: 90%;
+  justify-content: center;
+  padding-top: 25px;
+}
+.classDiv {
+  display: flex;
+   align-items: center;
+   justify-content: center;
+   overflow: auto;
+}
+.textClass {
+  font-family: SS-Ancient;
+  font-size: 40px
+}
+.keypad {
+  padding: 10px;
+  cursor: move;
+  z-index: 21;
+  text-align: center;
+  background-color: #000000;
+}
+
+.keypad > div {
+  display: block;
+}
+
+.container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.btn.centerButton {
+  display: flex;
+  justify-content: center;
+}
+
+
+.firstDiv {
+  width: 83%;
+}
+
+.secondDiv {
+  width: 17%;
+}
+
+.carouselDiv {
+    width: 90%;
+}
+
+.name{
+  color: white;
+}
+.buttonDiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.moreButtons {
+  margin: 10px;
+}
+input[type="button"] {
+  padding-top: 3px
+}
+
+textarea#__BVID__13{
+  font-size: 40px;
 }
