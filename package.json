@@ -26,6 +26,7 @@
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.0",
     "bootstrap-vue": "^2.0.0-rc.7",
+    "browserslist": "^4.0.2",
     "chalk": "^2.4.1",
     "copy-webpack-plugin": "^4.5.2",
     "cors": "^2.8.4",
