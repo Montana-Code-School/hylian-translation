@@ -39,7 +39,7 @@ const webpackConfig = merge(baseWebpackConfig, {
         rules: [
             {
                 test: /\.css$/,
-                loader: 'style!css'
+                loader: 'style-loader'
             },
             {
                 test: /\.html$/,
